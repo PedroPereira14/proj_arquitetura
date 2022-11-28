@@ -4,28 +4,24 @@ import pt.uma.arq.game.Animator;
 public abstract class Ship {
     public Animator animator;
 
-    private int x,y;
+    protected int x,y;
 
-    private int health;
+    protected int health;
 
-    public int getX() {
-        return x;
+    public void create(){
+        animator.create();
+    }
+
+    public void render(){
+        this.animator.render(this.x,this.y);
     }
 
     public void setX(int x) {
         this.x = x;
     }
 
-    public int getY() {
-        return y;
-    }
-
     public void setY(int y) {
         this.y = y;
-    }
-
-    public int getHealth() {
-        return health;
     }
 
     public void setHealth(int health) {

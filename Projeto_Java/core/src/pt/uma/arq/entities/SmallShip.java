@@ -14,8 +14,11 @@ public class SmallShip extends Ship {
 
     private int health;
 
-    public SmallShip(SpriteBatch batch){
+    public SmallShip(SpriteBatch batch, int x, int y){
+
         this.animator=new Animator(batch,"enemy-small.png", 2, 1);
+        this.x=x;
+        this.y=y;
     }
 
     public void create(){

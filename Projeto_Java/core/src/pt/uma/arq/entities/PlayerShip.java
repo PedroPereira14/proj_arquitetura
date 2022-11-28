@@ -6,17 +6,13 @@ import pt.uma.arq.game.Animator;
 import pt.uma.arq.game.Ship;
 
 public class PlayerShip extends Ship {
-    Laser laser;
+    private Laser laser;
+    private SpriteBatch batch;
 
-    Ship playerShip = new Ship(300, 100, 100) {
 
-        @Override
-        public void shoot() {
-
-        }
-    };
     private int PlayerSpeed = 4;
     public PlayerShip(SpriteBatch batch){
+        this.batch = batch;
         this.animator=new Animator(batch,"ship.png", 5, 2);
     }
 
@@ -28,11 +24,12 @@ public class PlayerShip extends Ship {
 
     public void Movement () {
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && x>=20)
-            x -= PlayerSpeed;
+            this.x -= PlayerSpeed;
         if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && x<=560)
-            x += PlayerSpeed;
-        if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
-                laser = new Laser(this.x, this.y+5);
+            this.x += PlayerSpeed;
+
+        if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE))
+                laser = new Laser(batch, this.x, this.y+20);
 
         //perguntar Segunda ao Prof como associar o movimento a animaçao
     }
@@ -43,13 +40,15 @@ public class PlayerShip extends Ship {
     public void render(){
         Movement();
         this.animator.render(this.x,this.y);
+        if(laser != null)
+            laser.render();
+
 
     }
 
     @Override
     public void shoot() {
-        if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
-            this.animator.create();
+
         //perguntar Segunda ao Prof da Bala
     }
 

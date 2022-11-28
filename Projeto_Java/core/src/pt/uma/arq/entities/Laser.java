@@ -16,12 +16,12 @@ public class Laser {
 
     private boolean collided;
 
-    public Laser(SpriteBatch batch){ this.animator=new Animator(batch,"laser.png", 2, 2);}
-
-    public void create(){
+    public Laser(SpriteBatch batch, int x, int y){
+        this.animator=new Animator(batch,"laser-bolts.png", 2, 2);
         animator.create();
+        this.x = x;
+        this.y = y;
     }
-    public void 
 
     public void setX(int x) {
         this.x = x;
@@ -38,6 +38,7 @@ public class Laser {
     }
 
     public void render(){
+        this.y +=5;
         this.animator.render(this.x,this.y);
     }
 }

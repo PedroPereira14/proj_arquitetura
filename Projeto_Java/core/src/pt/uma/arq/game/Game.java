@@ -6,6 +6,8 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import pt.uma.arq.entities.Fleet;
+import pt.uma.arq.entities.Laser;
 import pt.uma.arq.entities.PlayerShip;
 import pt.uma.arq.entities.SmallShip;
 
@@ -16,21 +18,24 @@ public class Game extends ApplicationAdapter {
     private BitmapFont font;
 
     private PlayerShip player;
-    private SmallShip smallShip;
+
+    private Fleet ships;
+
 
 
     @Override
     public void create() {
         Gdx.graphics.setWindowedMode(600, 800);
+
+        //Gdx.graphics.getHeight()
+
         batch = new SpriteBatch();
+        ships = new Fleet(batch);
         player = new PlayerShip(batch);
-        smallShip = new SmallShip(batch);
+        ships.create();
         player.create();
         player.setX(300);
         player.setY(100);
-        smallShip.create();
-        smallShip.setX(200);
-        smallShip.setY(400);
         font = new BitmapFont(Gdx.files.internal("gamefont.fnt"),
                 Gdx.files.internal("gamefont.png"), false);
         backgroundManagement = new BackgroundManagement(batch);
@@ -43,7 +48,7 @@ public class Game extends ApplicationAdapter {
         batch.begin();
         backgroundManagement.render();
         player.render();
-        smallShip.render();
+        ships.render();
         batch.end();
     }
 
