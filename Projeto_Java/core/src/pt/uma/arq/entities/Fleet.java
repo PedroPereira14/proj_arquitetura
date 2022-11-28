@@ -21,19 +21,26 @@ public class Fleet {
     }
 
     public void create(){
-        int ssx = 120;
-        int msx = 100;
+        int ssx = 100;
+        int msx = 50;
+        int lsx = 50;
         for (int j= 0; j<10; j++){
-            Ship s = new SmallShip(batch,ssx ,600);
+            Ship s = new SmallShip(batch,ssx ,500);
             s.create();
             ships.add(s);
-            ssx +=30;
+            ssx +=40;
         }
         for (int j= 0; j<10; j++){
-            Ship m = new MediumShip(batch,msx ,700);
+            Ship m = new MediumShip(batch,msx ,600);
             m.create();
             ships.add(m);
-            msx +=50;
+            msx += 50;
+        }
+        for (int j= 0; j<10; j++){
+            Ship l = new LargeShip(batch,lsx,700);
+            l.create();
+            ships.add(l);
+            lsx +=50;
         }
 
 

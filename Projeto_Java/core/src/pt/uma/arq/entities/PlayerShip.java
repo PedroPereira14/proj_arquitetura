@@ -25,6 +25,7 @@ public class PlayerShip extends Ship {
     public void Movement () {
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && x>=20)
             this.x -= PlayerSpeed;
+
         if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && x<=560)
             this.x += PlayerSpeed;
 
