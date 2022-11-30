@@ -13,11 +13,19 @@ public class Fleet {
     private Animator animator;
     private ArrayList<Ship> ships;
     private SpriteBatch batch;
+    protected ArrayList<Laser> enemyLaserList = new ArrayList<Laser>();
 
+    private int x,y;
 
     public Fleet(SpriteBatch batch){
         this.batch = batch;
         this.ships = new ArrayList<Ship>();
+    }
+
+    public void shootRandomly(){
+        Laser laser;
+        laser = new Laser(batch, this.x, this.y + 20);
+        enemyLaserList.add(laser);
     }
 
     public void create(){

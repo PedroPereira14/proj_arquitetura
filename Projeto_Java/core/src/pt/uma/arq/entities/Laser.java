@@ -4,6 +4,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import pt.uma.arq.game.Animator;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class Laser {
     private Animator animator;
@@ -21,6 +24,13 @@ public class Laser {
         animator.create();
         this.x = x;
         this.y = y;
+    }
+    public void create(){
+        animator.create();
+    }
+
+    public int getY() {
+        return y;
     }
 
     public void setX(int x) {
@@ -41,4 +51,7 @@ public class Laser {
         this.y +=5;
         this.animator.render(this.x,this.y);
     }
+
+
+
 }
