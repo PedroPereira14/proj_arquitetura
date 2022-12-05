@@ -24,11 +24,9 @@ public class SmallShip extends Ship {
         this.animator=new Animator(batch,"enemy-small.png", 2, 1);
         this.x=x;
         this.y=y;
+        this.create();
     }
 
-    public void create(){
-        animator.create();
-    }
 
     public void render(){
         this.animator.render(this.x,this.y);

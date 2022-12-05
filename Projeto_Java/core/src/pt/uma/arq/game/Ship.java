@@ -4,6 +4,7 @@ import pt.uma.arq.entities.Laser;
 import pt.uma.arq.entities.LaserEnemy;
 import pt.uma.arq.game.Animator;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public abstract class Ship {
@@ -11,8 +12,10 @@ public abstract class Ship {
 
     private SpriteBatch batch;
 
-    protected ArrayList<Laser> laserList = new ArrayList<Laser>();
+
     protected ArrayList<LaserEnemy> enemyLaserList = new ArrayList<LaserEnemy>();
+
+    protected Rectangle boundingBox;
 
     protected int x,y;
 
@@ -20,6 +23,7 @@ public abstract class Ship {
 
     public void create(){
         animator.create();
+        boundingBox = new Rectangle(x,y,animator.getWidth(),animator.getHeight());
     }
 
 

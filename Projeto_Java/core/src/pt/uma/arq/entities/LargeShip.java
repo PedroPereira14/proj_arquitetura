@@ -21,10 +21,7 @@ public class LargeShip extends Ship {
         this.animator=new Animator(batch,"enemy-big.png", 2, 1);
         this.x=x;
         this.y=y;
-    }
-
-    public void create(){
-        animator.create();
+        this.create();
     }
 
     public void render(){

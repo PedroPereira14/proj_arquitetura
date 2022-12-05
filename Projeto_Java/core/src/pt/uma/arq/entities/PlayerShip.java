@@ -6,7 +6,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import pt.uma.arq.game.Animator;
 import pt.uma.arq.game.Ship;
 
+import java.util.ArrayList;
+
 public class PlayerShip extends Ship {
+
+    protected ArrayList<Laser> laserList = new ArrayList<Laser>();
     private SpriteBatch batch;
 
 
@@ -14,21 +18,21 @@ public class PlayerShip extends Ship {
     public PlayerShip(SpriteBatch batch){
         this.batch = batch;
         this.animator=new Animator(batch,"ship.png", 5, 2);
+        this.create();
     }
 
-    public void create(){
-        animator.create();
-    }
 
 
 
     public void Movement () {
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && x>=20)
+        if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && x>=20) {
             this.x -= PlayerSpeed;
-
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && x<=560)
+            this.boundingBox.setLocation(x, y);
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && x<=560){
             this.x += PlayerSpeed;
-        //perguntar Segunda ao Prof como associar o movimento a animaçao
+            this.boundingBox.setLocation(x, y);
+        }
     }
 
 
