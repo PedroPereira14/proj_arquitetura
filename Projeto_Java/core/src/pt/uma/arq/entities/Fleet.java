@@ -6,6 +6,8 @@ import pt.uma.arq.entities.LargeShip;
 import pt.uma.arq.entities.PlayerShip;
 import pt.uma.arq.game.Animator;
 import pt.uma.arq.game.Ship;
+import com.badlogic.gdx.utils.Timer;
+import java.util.Random;
 
 import java.util.ArrayList;
 
@@ -13,20 +15,25 @@ public class Fleet {
     private Animator animator;
     private ArrayList<Ship> ships;
     private SpriteBatch batch;
-    protected ArrayList<Laser> enemyLaserList = new ArrayList<Laser>();
+//    protected ArrayList<LaserEnemy> enemyLaserList = new ArrayList<LaserEnemy>();
 
     private int x,y;
+
+    Timer timer;
 
     public Fleet(SpriteBatch batch){
         this.batch = batch;
         this.ships = new ArrayList<Ship>();
+        timer = new Timer();
+        timer.scheduleTask(new Timer.Task() {
+            @Override
+            public void run() {
+                System.out.println("Timer");
+                shootRandomly();
+            }
+        },1,2,-1);
     }
 
-    public void shootRandomly(){
-        Laser laser;
-        laser = new Laser(batch, this.x, this.y + 20);
-        enemyLaserList.add(laser);
-    }
 
     public void create(){
         int ssx = 100;
@@ -52,6 +59,12 @@ public class Fleet {
         }
 
 
+    }
+
+    public void shootRandomly(){
+        Random r = new Random();
+        int index = r.nextInt(ships.size());
+        ships.get(index).shoot();
     }
 
     public void render(){

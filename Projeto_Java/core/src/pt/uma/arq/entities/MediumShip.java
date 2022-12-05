@@ -6,6 +6,8 @@ import pt.uma.arq.game.Ship;
 import java.awt.*;
 
 public class MediumShip extends Ship {
+
+    private SpriteBatch batch;
     private int x,y;
 
     private Rectangle boundingBox;
@@ -15,7 +17,7 @@ public class MediumShip extends Ship {
     private int health;
 
     public MediumShip(SpriteBatch batch,int x, int y){
-
+        this.batch = batch;
         this.animator=new Animator(batch,"enemy-medium.png", 2, 1);
         this.x = x;
         this.y = y;
@@ -27,6 +29,11 @@ public class MediumShip extends Ship {
 
     public void render(){
         this.animator.render(this.x,this.y);
+        if(enemyLaserList != null) {
+            for (LaserEnemy ll: enemyLaserList) {
+                ll.renderMedium();
+            }
+        }
     }
 
     public void setX(int x) {
@@ -38,6 +45,8 @@ public class MediumShip extends Ship {
     }
     @Override
     public void shoot() {
-
+        LaserEnemy enemyLaser;
+        enemyLaser = new LaserEnemy(batch, this.x, this.y - 10);
+        enemyLaserList.add(enemyLaser);
     }
 }

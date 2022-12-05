@@ -1,14 +1,9 @@
 package pt.uma.arq.entities;
-
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import pt.uma.arq.game.Animator;
-
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
-public class Laser {
+public class LaserEnemy {
     private Animator animator;
 
     private int x,y;
@@ -19,13 +14,12 @@ public class Laser {
 
     private boolean collided;
 
-    public Laser(SpriteBatch batch, int x, int y){
-        this.animator=new Animator(batch,"laser-bolts.png", 2, 2);
+    public LaserEnemy(SpriteBatch batch, int x, int y){
+        this.animator=new Animator(batch,"laserEnemy-bolts.png", 2, 2);
         animator.create();
         this.x = x;
         this.y = y;
     }
-
     public void create(){
         animator.create();
     }
@@ -48,12 +42,22 @@ public class Laser {
         }
     }
 
-
-    public void render(){
-        this.y +=5;
+    public void renderSmall(){
+        this.y -=5;
         this.animator.render(this.x,this.y);
     }
 
+    public void renderMedium(){
+        this.y -=5;
+        this.x -=2;
+        this.animator.render(this.x,this.y);
+    }
+
+    public void renderLarge(){
+        this.y -=5;
+        this.x +=2;
+        this.animator.render(this.x,this.y);
+    }
 
 
 }
