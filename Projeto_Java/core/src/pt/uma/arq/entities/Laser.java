@@ -21,15 +21,12 @@ public class Laser {
 
     public Laser(SpriteBatch batch, int x, int y){
         this.animator=new Animator(batch,"laser-bolts.png", 2, 2);
-        animator.create();
         this.x = x;
         this.y = y;
-    }
-
-    public void create(){
         animator.create();
         boundingBox = new Rectangle(x,y,animator.getWidth(),animator.getHeight());
     }
+
 
     public int getY() {
         return y;
