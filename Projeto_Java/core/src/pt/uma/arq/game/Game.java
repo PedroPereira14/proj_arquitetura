@@ -47,6 +47,8 @@ public class Game extends ApplicationAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
         backgroundManagement.render();
+        font.draw(batch,"Score",300,100);
+        font.draw(batch,"Health:" + player.getHealth(),300,50);
         player.render();
         ships.render();
         batch.end();

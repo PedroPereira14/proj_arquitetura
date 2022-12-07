@@ -28,6 +28,7 @@ public class Laser {
 
     public void create(){
         animator.create();
+        boundingBox = new Rectangle(x,y,animator.getWidth(),animator.getHeight());
     }
 
     public int getY() {

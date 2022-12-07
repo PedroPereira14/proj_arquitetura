@@ -16,6 +16,7 @@ public class PlayerShip extends Ship {
 
     private int PlayerSpeed = 4;
     public PlayerShip(SpriteBatch batch){
+        this.health = 100;
         this.batch = batch;
         this.animator=new Animator(batch,"ship.png", 5, 2);
         this.create();

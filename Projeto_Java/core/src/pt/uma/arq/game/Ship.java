@@ -35,6 +35,9 @@ public abstract class Ship {
         this.x = x;
     }
 
+    public int getHealth() {
+        return health;
+    }
 
     public void setY(int y) {
         this.y = y;

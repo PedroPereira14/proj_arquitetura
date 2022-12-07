@@ -23,6 +23,7 @@ public class SmallShip extends Ship {
         this.batch = batch;
         this.animator=new Animator(batch,"enemy-small.png", 2, 1);
         this.x=x;
+        this.health = 1;
         this.y=y;
         this.create();
     }

@@ -19,6 +19,7 @@ public class LargeShip extends Ship {
     public LargeShip(SpriteBatch batch,int x, int y){
         this.batch = batch;
         this.animator=new Animator(batch,"enemy-big.png", 2, 1);
+        this.health = 1;
         this.x=x;
         this.y=y;
         this.create();

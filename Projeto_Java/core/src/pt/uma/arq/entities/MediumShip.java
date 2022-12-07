@@ -19,6 +19,7 @@ public class MediumShip extends Ship {
     public MediumShip(SpriteBatch batch,int x, int y){
         this.batch = batch;
         this.animator=new Animator(batch,"enemy-medium.png", 2, 1);
+        this.health = 1;
         this.x = x;
         this.y = y;
         this.create();
