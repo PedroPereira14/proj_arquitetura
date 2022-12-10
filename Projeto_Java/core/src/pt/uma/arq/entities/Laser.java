@@ -30,6 +30,7 @@ public class Laser {
         this.boundingBox = new Rectangle(x,y,animator.getWidth(),animator.getHeight());
     }
 
+
     public boolean getIsEnemy() {
         return isEnemy;
     }
@@ -58,6 +59,7 @@ public class Laser {
     public Rectangle getBoundingBox() {
         return boundingBox;
     }
+
 
     public void renderPlayer(){
         this.y +=5;

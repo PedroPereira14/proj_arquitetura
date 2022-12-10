@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class PlayerShip extends Ship {
     private int health, score;
     private int PlayerSpeed = 4;
+
     public PlayerShip(SpriteBatch batch, int x, int y){
         super(batch,"ship.png", 5, 2,x,y,"Player");
         this.health = 100;

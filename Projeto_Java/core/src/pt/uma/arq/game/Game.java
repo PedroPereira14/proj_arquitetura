@@ -19,6 +19,7 @@ public class Game extends ApplicationAdapter {
 
     private PlayerShip player;
 
+
     private Fleet ships;
 
 
@@ -47,6 +48,12 @@ public class Game extends ApplicationAdapter {
         player.render();
         ships.render();
         ships.handleCollisions(player);
+        if (player.getScore() == 350){
+            font.draw(batch,"You win",250,500);
+        }
+        else if(player.getHealth() == 0){
+            font.draw(batch,"You Lose",250,500);
+        }
         batch.end();
     }
 

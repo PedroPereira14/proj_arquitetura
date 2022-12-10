@@ -15,9 +15,7 @@ public class MediumShip extends Ship {
 
     public void render(){
         this.animator.render(this.x,this.y);
-        if(boundingBox != null){
-            this.boundingBox.setLocation(x,y);
-        }
+        this.boundingBox.setLocation(x,y);
         if(laserList != null) {
             for (Laser ll: laserList) {
                 if(ll.getIsEnemy()) {

@@ -14,6 +14,8 @@ public class Fleet {
     private Animator animator;
     private ArrayList<Ship> ships;
     private SpriteBatch batch;
+
+
     Timer timer;
 
 
@@ -76,7 +78,6 @@ public class Fleet {
         while (iterator.hasNext()) {
             Ship ship = iterator.next();
             for (Laser l : playerShip.getLaserList()) {
-
                 if (l.getBoundingBox().intersects(ship.getBoundingBox())) {
                     iterator.remove();
                     l.setCollided(false);
@@ -92,7 +93,6 @@ public class Fleet {
                 }
 
             }
-
         }
     }
 
