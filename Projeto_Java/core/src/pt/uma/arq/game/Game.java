@@ -26,16 +26,11 @@ public class Game extends ApplicationAdapter {
     @Override
     public void create() {
         Gdx.graphics.setWindowedMode(600, 800);
-
-        //Gdx.graphics.getHeight()
-
         batch = new SpriteBatch();
         ships = new Fleet(batch);
-        player = new PlayerShip(batch);
+        player = new PlayerShip(batch,300,100);
         ships.create();
         player.create();
-        player.setX(300);
-        player.setY(100);
         font = new BitmapFont(Gdx.files.internal("gamefont.fnt"),
                 Gdx.files.internal("gamefont.png"), false);
         backgroundManagement = new BackgroundManagement(batch);
@@ -43,19 +38,21 @@ public class Game extends ApplicationAdapter {
 
     @Override
     public void render() {
+        batch.begin();
         Gdx.gl.glClearColor(0, 0, 0.2f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        batch.begin();
         backgroundManagement.render();
-        font.draw(batch,"Score",300,100);
+        font.draw(batch,"Score: "+ player.getScore(),300,100);
         font.draw(batch,"Health:" + player.getHealth(),300,50);
         player.render();
         ships.render();
+        ships.handleCollisions(player);
         batch.end();
     }
 
     @Override
     public void dispose() {
         batch.dispose();
+        font.dispose();
     }
 }

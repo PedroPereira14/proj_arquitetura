@@ -9,16 +9,12 @@ import pt.uma.arq.game.Ship;
 import java.util.ArrayList;
 
 public class PlayerShip extends Ship {
-
-    protected ArrayList<Laser> laserList = new ArrayList<Laser>();
-    private SpriteBatch batch;
-
-
+    private int health, score;
     private int PlayerSpeed = 4;
-    public PlayerShip(SpriteBatch batch){
+    public PlayerShip(SpriteBatch batch, int x, int y){
+        super(batch,"ship.png", 5, 2,x,y,"Player");
         this.health = 100;
-        this.batch = batch;
-        this.animator=new Animator(batch,"ship.png", 5, 2);
+        this.score = 0;
         this.create();
     }
 
@@ -44,18 +40,42 @@ public class PlayerShip extends Ship {
         this.animator.render(this.x,this.y);
         if(laserList != null) {
             for (Laser ll: laserList) {
-                ll.render();
+                if(ll.getCollided() || ll.getY() > 800) {
+                    ll.renderPlayer();
+                }
             }
-        }
+            }
+       }
 
 
+
+
+    public ArrayList<Laser> getLaserList() {
+        return laserList;
     }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
 
     @Override
     public void shoot() {
         Laser laser;
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
-            laser = new Laser(batch, this.x, this.y + 20);
+            laser = new Laser(batch, this.x, this.y + 20, false,"laser-bolts.png");
             laserList.add(laser);
         }
         //laser.create();
