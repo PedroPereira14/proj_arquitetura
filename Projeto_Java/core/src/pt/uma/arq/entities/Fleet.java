@@ -1,4 +1,7 @@
 package pt.uma.arq.entities;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import pt.uma.arq.game.Animator;
@@ -15,6 +18,8 @@ public class Fleet {
     private ArrayList<Ship> ships;
     private SpriteBatch batch;
 
+    private ArrayList<Laser> laserList = new ArrayList<Laser>();
+
 
     Timer timer;
 
@@ -28,7 +33,7 @@ public class Fleet {
             public void run() {
                 shootRandomly();
             }
-        }, 1, 2, -1);
+        }, 1, 0.5f, -1);
 
 
     }
@@ -79,6 +84,7 @@ public class Fleet {
             Ship ship = iterator.next();
             for (Laser l : playerShip.getLaserList()) {
                 if (l.getBoundingBox().intersects(ship.getBoundingBox())) {
+                    playerShip.getSound2().play(0.1f);
                     iterator.remove();
                     l.setCollided(false);
                     if (ship.getType() == "Small"){
@@ -92,6 +98,29 @@ public class Fleet {
                     }
                 }
 
+            }
+        }
+    }
+
+    public void handleCollisionsEnemy(PlayerShip playerShip) {
+        for (Ship ship: ships){
+            for (Laser l: ship.getLaserList()){
+                System.out.println(l.getBoundingBox());
+                if (l.getBoundingBox().intersects(playerShip.getBoundingBox())){
+                    playerShip.getSound3().play(0.2f);
+                    if (ship.getType() == "Small"){
+                        playerShip.setHealth(playerShip.getHealth()-5);
+                    }
+                    else if (ship.getType() == "Medium"){
+                        playerShip.setHealth(playerShip.getHealth()-10);
+                    }
+                    else {
+                        playerShip.setHealth(playerShip.getHealth()-20);
+                    }
+                    for (Laser ll : ship.getLaserList()) {
+                        ll.getBoundingBox().setBounds(0, 0, 0, 0);
+                    }
+                }
             }
         }
     }

@@ -1,4 +1,5 @@
 package pt.uma.arq.game;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import pt.uma.arq.entities.Laser;
 
@@ -46,6 +47,9 @@ public abstract class Ship {
         this.y = y;
     }
 
+    public ArrayList<Laser> getLaserList() {
+        return laserList;
+    }
 
     public Rectangle getBoundingBox() {
         return boundingBox;

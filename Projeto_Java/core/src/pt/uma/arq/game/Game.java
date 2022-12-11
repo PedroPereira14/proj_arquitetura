@@ -3,6 +3,7 @@ package pt.uma.arq.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -13,6 +14,8 @@ import pt.uma.arq.entities.SmallShip;
 
 public class Game extends ApplicationAdapter {
     private SpriteBatch batch;
+
+    private Music music;
 
     private BackgroundManagement backgroundManagement;
     private BitmapFont font;
@@ -35,6 +38,11 @@ public class Game extends ApplicationAdapter {
         font = new BitmapFont(Gdx.files.internal("gamefont.fnt"),
                 Gdx.files.internal("gamefont.png"), false);
         backgroundManagement = new BackgroundManagement(batch);
+        Music music = Gdx.audio.newMusic(Gdx.files.internal("ThemeMusic.mp3"));
+
+        music.setVolume(0.3f);
+        music.setLooping(true);
+        music.play();
     }
 
     @Override
@@ -48,10 +56,12 @@ public class Game extends ApplicationAdapter {
         player.render();
         ships.render();
         ships.handleCollisions(player);
+        ships.handleCollisionsEnemy(player);
+        //batch.disableBlending(); <-é bom para ver se as bounding boxes estao funcionando
         if (player.getScore() == 350){
             font.draw(batch,"You win",250,500);
         }
-        else if(player.getHealth() == 0){
+        else if(player.getHealth() <= 0){
             font.draw(batch,"You Lose",250,500);
         }
         batch.end();

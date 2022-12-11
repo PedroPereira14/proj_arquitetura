@@ -24,7 +24,7 @@ public class Laser {
         this.isEnemy = isEnemy;
         this.batch = batch;
         this.animator= new Animator(batch,path, 2, 2);
-        animator.create();
+        this.animator.create();
         this.x = x;
         this.y = y;
         this.boundingBox = new Rectangle(x,y,animator.getWidth(),animator.getHeight());
@@ -55,11 +55,9 @@ public class Laser {
     }
 
 
-
     public Rectangle getBoundingBox() {
         return boundingBox;
     }
-
 
     public void renderPlayer(){
         this.y +=5;

@@ -2,14 +2,18 @@ package pt.uma.arq.entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import pt.uma.arq.game.Animator;
 import pt.uma.arq.game.Ship;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class PlayerShip extends Ship {
     private int health, score;
+
+    private Sound sound1,sound2,sound3;
     private int PlayerSpeed = 4;
 
     public PlayerShip(SpriteBatch batch, int x, int y){
@@ -17,10 +21,11 @@ public class PlayerShip extends Ship {
         this.health = 100;
         this.score = 0;
         this.create();
+        this.boundingBox = new Rectangle(x, y, animator.getWidth(), animator.getHeight());
+        this.sound1 = Gdx.audio.newSound(Gdx.files.internal("playerShotSound.wav"));
+        this.sound2 = Gdx.audio.newSound(Gdx.files.internal("Explosion(CAVALO).mp3"));
+        this.sound3 = Gdx.audio.newSound(Gdx.files.internal("EnemyLaserCollision(EleGosta).mp3"));
     }
-
-
-
 
     public void Movement () {
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && x>=20) {
@@ -49,7 +54,13 @@ public class PlayerShip extends Ship {
        }
 
 
+    public Sound getSound2() {
+        return sound2;
+    }
 
+    public Sound getSound3() {
+        return sound3;
+    }
 
     public ArrayList<Laser> getLaserList() {
         return laserList;
@@ -78,6 +89,7 @@ public class PlayerShip extends Ship {
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
             laser = new Laser(batch, this.x, this.y + 20, false,"laser-bolts.png");
             laserList.add(laser);
+            sound1.play(0.3f);
         }
         //laser.create();
 
