@@ -41,6 +41,6 @@ public class LargeShip extends Ship {
         Laser enemyLaser;
         enemyLaser = new Laser(batch, this.x, this.y - 10,true, "laserEnemy-bolts.png");
         laserList.add(enemyLaser);
-        sound.play(0.2f);
+        sound.play(0.05f);
     }
 }

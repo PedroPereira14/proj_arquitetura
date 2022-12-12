@@ -64,12 +64,4 @@ public abstract class Ship {
 
     public abstract void shoot();
 
-
-    public int getY() {
-        return y;
-    }
-
-    public int getX() {
-        return x;
-    }
 }

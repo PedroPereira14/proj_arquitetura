@@ -23,8 +23,8 @@ public class PlayerShip extends Ship {
         this.create();
         this.boundingBox = new Rectangle(x, y, animator.getWidth(), animator.getHeight());
         this.sound1 = Gdx.audio.newSound(Gdx.files.internal("playerShotSound.wav"));
-        this.sound2 = Gdx.audio.newSound(Gdx.files.internal("Explosion(CAVALO).mp3"));
-        this.sound3 = Gdx.audio.newSound(Gdx.files.internal("EnemyLaserCollision(EleGosta).mp3"));
+        this.sound2 = Gdx.audio.newSound(Gdx.files.internal("Explosion.wav"));
+        this.sound3 = Gdx.audio.newSound(Gdx.files.internal("EnemyLaserCollision.wav"));
     }
 
     public void Movement () {
@@ -32,7 +32,7 @@ public class PlayerShip extends Ship {
             this.x -= PlayerSpeed;
             this.boundingBox.setLocation(x, y);
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && x<=560){
+        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && x<=Gdx.graphics.getWidth()){
             this.x += PlayerSpeed;
             this.boundingBox.setLocation(x, y);
         }

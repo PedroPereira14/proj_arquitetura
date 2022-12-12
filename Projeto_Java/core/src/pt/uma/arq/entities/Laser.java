@@ -13,7 +13,6 @@ public class Laser {
     private boolean isEnemy;
     private Animator animator;
     private int x,y;
-    private int damage;
     private Rectangle boundingBox;
 
     protected SpriteBatch batch;
@@ -45,15 +44,6 @@ public class Laser {
     public int getY() {
         return y;
     }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
 
     public Rectangle getBoundingBox() {
         return boundingBox;
